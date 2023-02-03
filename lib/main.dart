@@ -78,9 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
             // botão para entrar na aplicação
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                
-                primary: Colors.green,
-                onSurface: Colors.green,
+                primary: Color.fromRGBO(85, 194, 134,1),
+                onSurface: Color.fromRGBO(85, 194, 134,1),
                 elevation: 5,
                 shadowColor: Colors.grey,
                 shape: StadiumBorder(),

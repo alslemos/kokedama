@@ -1,15 +1,32 @@
+import 'dart:math';
+import 'dart:ui';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:kokedama/screen1.dart';
 import 'Add.dart';
 import 'Myplants.dart';
 import 'Tips.dart';
 
 void main() {
-  runApp(const Home());
+  runApp(Home());
 }
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  //construção da paleta
+  MaterialColor mycolor = MaterialColor(
+    Color.fromRGBO(85, 194, 134, 1).value,
+    <int, Color>{
+      50: Color.fromRGBO(85, 194, 134, 0.1),
+      100: Color.fromRGBO(85, 194, 134, 0.2),
+      200: Color.fromRGBO(85, 194, 134, 0.3),
+      300: Color.fromRGBO(85, 194, 134, 0.4),
+      400: Color.fromRGBO(85, 194, 134, 0.5),
+      500: Color.fromRGBO(85, 194, 134, 0.6),
+      600: Color.fromRGBO(85, 194, 134, 0.7),
+      700: Color.fromRGBO(85, 194, 134, 0.8),
+      800: Color.fromRGBO(85, 194, 134, 0.9),
+      900: Color.fromRGBO(85, 194, 134, 1),
+    },
+  );
 
   // This widget is the root of your application.
   @override
@@ -17,7 +34,7 @@ class Home extends StatelessWidget {
     return MaterialApp(
       title: 'kokedama',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: mycolor,
         scaffoldBackgroundColor: Color.fromRGBO(248, 248, 248, 1),
       ),
       home: const MyHomePage(title: 'kokedama'),
@@ -40,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //
       // botão central
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -49,8 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
             MaterialPageRoute(builder: (context) => Add()),
           );
         },
-        child: const Icon(Icons.add_outlined),
+        child: Icon(Icons.add_outlined, color: Colors.white),
       ),
+
+      //
+      // barra de navegação
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         color: Colors.white,
@@ -97,91 +118,92 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
 
+      //
+      //conteúdo da página
       body: Container(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Card(
-              shadowColor: Colors.lightGreenAccent,
-              color: Colors.green,
-              child: SizedBox(
-                width: 1500,
-                height: 235,
-              ),
-            ),
-            Card(
-              margin: const EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              elevation: 5,
-              child: Container(
-                width: 400,
-                height: 200,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        "https://a-static.mlcdn.com.br/800x560/planta-samambaia-americana-cuia-25-super-cheia-c-haste-para-pendurar-biogarden/biogardengreen/02c630ce0cfb11edb0ff4201ac185079/f02328fa160858e09c404d5fdb97ab92.jpeg"), //NetworkImage
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: const ListTile(
-                  title: Text('Demo Title'),
-                  subtitle: Text('simple card in Flutter.'),
-                ),
-              ),
-            ),
+            Center(
+              child: Stack(
+                //empilhando esses para combinar com o desin bonitinho po
+                children: <Widget>[
+                  //
+                  //card verde
+                  Container(
+                    width: 1500,
+                    height: 250,
+                    child: const Card(
+                      shadowColor: Colors.grey,
+                      color: Color.fromRGBO(85, 194, 134, 1),
+                      child: SizedBox(
+                        width: 1500,
+                        height: 250,
+                      ),
+                    ),
+                  ), //Container
 
-            // botão para entrar na aplicação
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  onSurface: Colors.green,
-                  elevation: 5,
-                  shadowColor: Colors.grey,
-                  shape: StadiumBorder(),
-                  side: const BorderSide(
-                    width: 0.5,
-                    color: Color.fromRGBO(85, 194, 134, 1),
-                  ) // desncessário, mas gostei
-                  ),
+                  //
+                  //carrossel
+                  Container(
+                    width: 1500,
+                    height: 490,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                          height: 142.0,
+                          aspectRatio: 16 / 9,
+                          enableInfiniteScroll: false,
+                          reverse: false,
+                          //viewportFraction:
+                          //min(((MediaQuery.of(context).size.width) * 0.2) / 400, 0.32),
+                          //(((MediaQuery.of(context).size.width) * 0.2) / 300),
+                          enlargeCenterPage: false,
+                          scrollDirection: Axis.horizontal),
+                      items: [1, 2, 3, 4, 5, 6].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              child: Container(
+                                width:
+                                    (MediaQuery.of(context).size.width), //400,
+                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  border: Border.all(
+                                    color: Color.fromRGBO(61, 172, 111, 1),
+                                    width: 2,
+                                  ),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://a-static.mlcdn.com.br/800x560/planta-samambaia-americana-cuia-25-super-cheia-c-haste-para-pendurar-biogarden/biogardengreen/02c630ce0cfb11edb0ff4201ac185079/f02328fa160858e09c404d5fdb97ab92.jpeg"), //NetworkImage
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.topCenter,
+                                  ),
+                                ),
+                                child: const ListTile(
+                                  title: Text('Demo Title'),
+                                  subtitle: Text('simple card in Flutter.'),
 
-              child: const Text(
-                ' Fazer Login ',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontFamily: 'Open Sans',
-                    //fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MainScreen()),
-                );
-              }, // ainda sem nenhuma função
-            ),
+                                  //https://pub.dev/packages/carousel_slider
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ), //Container
+
+                  //
+                  // talvez ainda possa ser algo
+                  Container(), //Container
+                ], //<Widget>[]
+              ), //Stack
+            ), //Center
 
             // espaço
             SizedBox(height: 10),
-
-            // gesture detector
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MainScreen()),
-                );
-              },
-              child: const Text(
-                'Continuar sem uma conta',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontFamily: 'Open Sans', color: Colors.white, fontSize: 18),
-              ),
-            ),
           ],
         ),
       ),

@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'Add.dart';
 import 'Myplants.dart';
 import 'Tips.dart';
@@ -53,10 +55,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String searchValue = '';
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Search',
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search, color: Colors.white),
+              onPressed: () {
+                showSearch(context: context, delegate: MySearchDelegate());
+              })
+        ],
+      ),
+
       //
       // botão central
       extendBody: true,
@@ -126,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Center(
               child: Stack(
+                //
                 //empilhando esses para combinar com o desin bonitinho po
                 children: <Widget>[
                   //
@@ -208,5 +226,69 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+}
+
+class MySearchDelegate extends SearchDelegate {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    icon:
+    const Icon(Icons.clear);
+    onPressed:
+    () {
+      if (query.isEmpty) {
+        close(context, null);
+      } else {
+        query = '';
+      }
+      query = '';
+    };
+    // TODO: implement buildActions
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    icon:
+    const Icon(Icons.arrow_back);
+    onPressed:
+    () => close(context, null);
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    child: Text(
+      query,
+      style: const TextStyle(fontSize: 64),
+    );
+    
+    // TODO: implement buildResults
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = [
+      '1',
+      '2',
+      '3',
+    ];
+
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        final suggestion = suggestions[index];
+
+        return ListTile(
+          title: Text(suggestion),
+          onTap: () {
+            query= suggestion;
+            showResults(context);
+          },
+        );
+      },
+    );
+    throw UnimplementedError();
   }
 }

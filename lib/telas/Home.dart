@@ -1,4 +1,4 @@
-import 'dart:math';
+// import 'dart:math';
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:anim_search_bar/anim_search_bar.dart';
@@ -61,19 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Search',
+      /*
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(250.0), // here the desired height
+          child: AppBar( 
+            // ...
+          )
         ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.search, color: Colors.white),
-              onPressed: () {
-                showSearch(context: context, delegate: MySearchDelegate());
-              })
-        ],
-      ),
-
+*/
       //
       // botão central
       extendBody: true,
@@ -150,13 +145,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   //card verde
                   Container(
                     width: 1500,
-                    height: 250,
-                    child: const Card(
-                      shadowColor: Colors.grey,
-                      color: Color.fromRGBO(85, 194, 134, 1),
-                      child: SizedBox(
-                        width: 1500,
-                        height: 250,
+                    height: 235,
+                    child: AppBar(
+                      title: Text("Teste"),
+                      centerTitle: true,
+                      elevation: 0.0,
+                      leading: InkWell(
+                        child: Image.asset(
+                          "assets/images/logo.png",
+                          width: 100,
+                          height: 100,
+                          semanticLabel: 'Logo da aplicação',
+                          //fit: BoxFit.contain,
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                  ), //Container
+
+                  Container(
+                    width: 1500,
+                    height: 490,
+                    child: Text(
+                      'Precisam de atenção',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        //fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18,
                       ),
                     ),
                   ), //Container
@@ -226,69 +242,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-}
-
-class MySearchDelegate extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    icon:
-    const Icon(Icons.clear);
-    onPressed:
-    () {
-      if (query.isEmpty) {
-        close(context, null);
-      } else {
-        query = '';
-      }
-      query = '';
-    };
-    // TODO: implement buildActions
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    icon:
-    const Icon(Icons.arrow_back);
-    onPressed:
-    () => close(context, null);
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    child: Text(
-      query,
-      style: const TextStyle(fontSize: 64),
-    );
-    
-    // TODO: implement buildResults
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> suggestions = [
-      '1',
-      '2',
-      '3',
-    ];
-
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        final suggestion = suggestions[index];
-
-        return ListTile(
-          title: Text(suggestion),
-          onTap: () {
-            query= suggestion;
-            showResults(context);
-          },
-        );
-      },
-    );
-    throw UnimplementedError();
   }
 }

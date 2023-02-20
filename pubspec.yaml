@@ -64,6 +64,7 @@ flutter:
   assets:
       - assets/images/background.png
       - assets/images/logo.png
+      - assets/images/garden.png
       - assets/fonts/GlacialIndifference-Bold.otf
       - assets/fonts/GlacialIndifference-Italic.otf
       - assets/fonts/GlacialIndifference-Regular.otf

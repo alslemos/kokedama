@@ -1,9 +1,7 @@
 // import 'dart:math';
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'Add.dart';
 import 'Myplants.dart';
 import 'Tips.dart';
@@ -15,8 +13,8 @@ void main() {
 class Home extends StatelessWidget {
   //construção da paleta
   MaterialColor mycolor = MaterialColor(
-    Color.fromRGBO(85, 194, 134, 1).value,
-    <int, Color>{
+    const Color.fromRGBO(85, 194, 134, 1).value,
+    const <int, Color>{
       50: Color.fromRGBO(85, 194, 134, 0.1),
       100: Color.fromRGBO(85, 194, 134, 0.2),
       200: Color.fromRGBO(85, 194, 134, 0.3),
@@ -68,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
             // ...
           )
         ),
-*/
-      //
+      */
+      // botão central
       // botão central
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -134,12 +132,11 @@ class _MyHomePageState extends State<MyHomePage> {
       //conteúdo da página
       body: Container(
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Center(
               child: Stack(
                 //
-                //empilhando esses para combinar com o desin bonitinho po
+                //empilhando elementos
                 children: <Widget>[
                   //
                   //card verde
@@ -147,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 1500,
                     height: 235,
                     child: AppBar(
+                      backwardsCompatibility: false,
                       title: Text("Teste"),
                       centerTitle: true,
                       elevation: 0.0,
@@ -159,20 +157,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           //fit: BoxFit.contain,
                         ),
                         onTap: () {},
-                      ),
-                    ),
-                  ), //Container
-
-                  Container(
-                    width: 1500,
-                    height: 490,
-                    child: Text(
-                      'Precisam de atenção',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        //fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18,
                       ),
                     ),
                   ), //Container
@@ -232,12 +216,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   //
                   // talvez ainda possa ser algo
                   Container(), //Container
-                ], //<Widget>[]
-              ), //Stack
-            ), //Center
+                ],
+              ),
+            ),
 
-            // espaço
-            SizedBox(height: 10),
+            // Deamis elementos da página
+            // elementos em coluna
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Image.asset(
+                  'assets/images/garden.png',
+                  width: 400,
+                  height: 400,
+                ),
+                //
+                // primeiro texto
+                Text(
+                  "Adicione suas plantas",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: 'GlacialIndifference',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+
+                SizedBox(height: 10),
+
+                //
+                // segundo texto
+                Text(
+                  "A partir do momento que você cadastra suas plantinhas no app, \n você será relembrado sobre as necessidades delas :D",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: 'GlacialIndifference',
+
+                    fontSize: 22,
+                  ),
+                ),
+              ],
+            ), //Container
           ],
         ),
       ),

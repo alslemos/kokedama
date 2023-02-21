@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kokedama/screen1.dart';
@@ -53,25 +55,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      /*
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(250.0), // here the desired height
-          child: AppBar( 
-            // ...
-          )
-        ),
-      */
       // botão central
       // botão central
       extendBody: true,
@@ -137,19 +123,22 @@ class _MyHomePageState extends State<MyHomePage> {
       //conteúdo da página
       body: Container(
         child: Column(
+          // coluna
           children: <Widget>[
+            // elementos
             Center(
+              // centralizados
               child: Stack(
-                //
-                //empilhando elementos
+                // empilhados
+                // elementos
                 children: <Widget>[
+                  SizedBox(height: 8),
                   //
                   //card verde
                   Container(
                     width: 1500,
                     height: 235,
                     child: AppBar(
-                      backwardsCompatibility: false,
                       title: Text("Teste"),
                       centerTitle: true,
                       elevation: 0.0,
@@ -165,62 +154,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ), //Container
-
-                  //
-                  //carrossel
-                  Container(
-                    width: 1500,
-                    height: 490,
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                          height: 142.0,
-                          aspectRatio: 16 / 9,
-                          enableInfiniteScroll: false,
-                          reverse: false,
-                          //viewportFraction:
-                          //min(((MediaQuery.of(context).size.width) * 0.2) / 400, 0.32),
-                          //(((MediaQuery.of(context).size.width) * 0.2) / 300),
-                          enlargeCenterPage: false,
-                          scrollDirection: Axis.horizontal),
-                      items: [1, 2, 3, 4, 5, 6].map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                              child: Container(
-                                width:
-                                    (MediaQuery.of(context).size.width), //400,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18),
-                                  border: Border.all(
-                                    color: Color.fromRGBO(61, 172, 111, 1),
-                                    width: 2,
-                                  ),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://a-static.mlcdn.com.br/800x560/planta-samambaia-americana-cuia-25-super-cheia-c-haste-para-pendurar-biogarden/biogardengreen/02c630ce0cfb11edb0ff4201ac185079/f02328fa160858e09c404d5fdb97ab92.jpeg"), //NetworkImage
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment.topCenter,
-                                  ),
-                                ),
-                                child: const ListTile(
-                                  title: Text('Demo Title'),
-                                  subtitle: Text('simple card in Flutter.'),
-
-                                  //https://pub.dev/packages/carousel_slider
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ), //Container
-
-                  //
-                  // talvez ainda possa ser algo
-                  Container(), //Container
                 ],
               ),
             ),
@@ -229,43 +162,43 @@ class _MyHomePageState extends State<MyHomePage> {
             // elementos em coluna
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.asset(
-                  'assets/images/garden.png',
-                  width: 400,
-                  height: 400,
-                ),
-                //
-                // primeiro texto
-                Text(
-                  "Adicione suas plantas",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontFamily: 'GlacialIndifference',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+              children: <Widget>[
+                new Card(
+                  child: new Container(
+                    padding: new EdgeInsets.all(32.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Text('Hello World'),
+                        new Text('How are you?')
+                      ],
+                    ),
                   ),
                 ),
-
-                SizedBox(height: 10),
-
-                //
-                // segundo texto
-                Text(
-                  "A partir do momento que você cadastra suas plantinhas no app, \n você será relembrado sobre as necessidades delas :D",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontFamily: 'GlacialIndifference',
-
-                    fontSize: 22,
+                new Card(
+                  child: new Container(
+                    padding: new EdgeInsets.all(32.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Text('Hello World'),
+                        new Text('How are you?')
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ), //Container
+                new Card(
+                  child: new Container(
+                    padding: new EdgeInsets.all(32.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Text('Hello World'),
+                        new Text('How are you?')
+                      ],
+                    ),
+                  ),
+                )
+              ]
+              ,
+            ),
           ],
         ),
       ),

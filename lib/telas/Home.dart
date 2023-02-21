@@ -1,5 +1,3 @@
-// import 'dart:math';
-import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'Add.dart';
@@ -59,14 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(250.0), // here the desired height
-          child: AppBar( 
-            // ...
-          )
-        ),
-      */
+      
       // botão central
       // botão central
       extendBody: true,
@@ -165,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   //carrossel
                   Container(
                     width: 1500,
-                    height: 490,
+                    height: 450,
                     child: CarouselSlider(
                       options: CarouselOptions(
                           height: 142.0,
@@ -223,12 +214,12 @@ class _MyHomePageState extends State<MyHomePage> {
             // Deamis elementos da página
             // elementos em coluna
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Image.asset(
                   'assets/images/garden.png',
-                  width: 400,
-                  height: 400,
+                  width: 300,
+                  height: 150,
                 ),
                 //
                 // primeiro texto
@@ -240,7 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black,
                     fontFamily: 'GlacialIndifference',
                     fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
 
@@ -248,6 +239,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 //
                 // segundo texto
+                /*
+                
                 Text(
                   "A partir do momento que você cadastra suas plantinhas no app, \n você será relembrado sobre as necessidades delas :D",
                   textAlign: TextAlign.center,
@@ -259,6 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 22,
                   ),
                 ),
+                */
               ],
             ), //Container
           ],
